@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-let cities = [];
+// let cities = [];
 
 // supported cities by state API
 
@@ -24,12 +24,15 @@ app.get('/api/:state', async (request,response) => {
   // console.log(request.params.state);
   const state = request.params.state;
   console.log("This is the FIRST API")
-  const data = await axios.get("http://api.airvisual.com/v2/cities?"
+  const cityList = await axios.get("http://api.airvisual.com/v2/cities?"
   + `state=${state}&country=USA&key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb`)
-  .then(res => res.data.data)
+  .then(res => {
+    console.log(res)
+    return res.data.data
+  })
   .catch(err => console.log(err))
   // console.log(data);
-  response.json(data)
+  response.json(cityList)
   // response.json(request.params);
 })
 
@@ -41,12 +44,12 @@ app.get('/api/:state/:city', async (request,response) => {
   console.log("This is the SECOND API")
   // console.log(state);
   // console.log(city);
-  const data = await axios.get(`http://api.airvisual.com/v2/city?city=${city}&`
+  const pollutionStats = await axios.get(`http://api.airvisual.com/v2/city?city=${city}&`
   + `state=${state}&country=USA&key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb`)
-  .then(res => res.data.data.current.pollution.aqius)
+  .then(res => res.data.data.current.pollution)
   .catch(err => console.log(err))
   // console.log(data);
-  response.json(data)
+  response.json(pollutionStats)
   // response.json(request.params);
 })
 
