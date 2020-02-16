@@ -1,21 +1,32 @@
 import React from 'react';
 import '../styling/App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import About from './About';
+import Solutions from './Solutions';
+
+//import Dropdown from './Dropdown';
+// import Container from 'react-bootstrap/Container';
+//import Router from 'react-bootstrap/Router';
+//import Searchbar from './Searchbar';
+
+import Home from './Home';
+import Navigation from '../components/Navigation';
 
 class App extends React.Component {
   state = { serverMessage: '' };
 
-  componentDidMount() {
-    fetch('/api/demo')
-      .then(response => response.json())
-      .then(data => this.setState({ serverMessage: data.message }));
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <div id="demo">
-        <h1>Hello from client/src/App.js</h1>
-        <h1>{this.state.serverMessage}</h1>
-      </div>
+      <BrowserRouter>
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/solutions" component={Solutions} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
