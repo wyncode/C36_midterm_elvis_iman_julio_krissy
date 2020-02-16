@@ -1,5 +1,27 @@
-/* JUST FOR DEMO PURPORSES, REPLACE WITH YOUR OWN CODE */
+.App {
+  text-align: center;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+}
 
+.navigation {
+  display: flex;
+  justify-content: center;
+}
+
+/* .about {
+  display: flex;
+  justify-content: center;
+}
+.solutions {
+  display: flex;
+  justify-content: center;
+} */
+
+/* JUST FOR DEMO PURPORSES, REPLACE WITH YOUR OWN CODE */
+/* 
 #demo {
   width: 100vw;
   height: 100vh;
@@ -12,4 +34,4 @@
   place-items: center;
 }
 
-/* END DEMO */
+END DEMO */
