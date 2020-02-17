@@ -65,6 +65,7 @@ const Dropdown = () => {
   const [apiCityData, setApiCityData] = useState([]);
   // This is the hook that was defined in the PollutionStats component
   const [cityUrl, setCityUrl] = useState('');
+
   //                                                       FIRST API BEG
   const handleDropdownChange = event => {
     setDropdownState(event.target.value);
@@ -86,6 +87,7 @@ const Dropdown = () => {
           return city.city;
         })
       );
+
     };
     getApiData();
   }, [dropdownState]);
@@ -104,6 +106,7 @@ const Dropdown = () => {
     if (query == '') {
       return;
     }
+
     const getApiCityData = async () => {
       const pollutionStats = await axios
         .get(`/api/${dropdownState}/${query}`)
@@ -115,12 +118,14 @@ const Dropdown = () => {
 
     const getCityPic = async () => {
       const cityPicUrl = await axios
-        .get(`/image/${query.split(' ').join('-')}`) // this converts space separated strings into the
-        .then(res => res.data); // proper format for the picture API. e.g.
-      setCityUrl(cityPicUrl); // "new york" --> "new-york"
+
+        .get(`/image/${query.split(' ').join('-')}`)  // this converts space separated strings into the 
+        .then(res => res.data);                       // proper format for the picture API. e.g. 
+      setCityUrl(cityPicUrl);                         // "new york" --> "new-york"
       // console.log('THIS IS POLLUTION STATS: ', cityPicUrl);
     };
     getCityPic();
+
   }, [query]);
   //                                                       SECOND API END
 
@@ -150,6 +155,7 @@ const Dropdown = () => {
         )}
       </div>
       <div className="center-container">
+
         {apiCityData.length !== 0 && (
           <PollutionStats stats={apiCityData} city={query} cityUrl={cityUrl} />
         )}

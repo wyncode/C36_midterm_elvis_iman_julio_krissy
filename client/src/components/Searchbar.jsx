@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Searchbar = props => {
   return (
     <form onSubmit={props.handleSubmit}>
