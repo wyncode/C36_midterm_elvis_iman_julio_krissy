@@ -18,6 +18,12 @@ if (process.env.NODE_ENV === 'production') {
 
 // let cities = [];
 
+app.get('/api', (request,response) => {
+  axios.get('http://api.airvisual.com/v2/states?country=USA&'
+  +'key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb')
+  .then(res => response.json(res.data.data))
+})
+
 // supported cities by state API
 
 app.get('/api/:state', (request,response) => {
@@ -39,6 +45,15 @@ app.get('/api/:state/:city', (request,response) => {
   .then(res => response.json(res.data.data.current.pollution))
   .catch(err => console.log(err))
 })
+
+// Picture API that retrieves a picture of the city that the user chooses
+app.get('/image/:city', (request,response) => {
+  const city = request.params.city
+  axios.get(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
+  .then(res => response.json(res.data.photos[0].image.web))
+  .catch(err => console.log(err))
+})
+
 
 
 const port = process.env.PORT || 8080;
