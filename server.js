@@ -1,12 +1,10 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-
 const axios = require('axios');
 const express = require('express');
 const path = require('path');
 const app = express();
-
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
@@ -15,50 +13,46 @@ if (process.env.NODE_ENV === 'production') {
     response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
-
 // let cities = [];
-
+app.get('/api', (request, response) => {
+  axios
+    .get(
+      'http://api.airvisual.com/v2/states?country=USA&' +
+        'key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb'
+    )
+    .then(res => response.json(res.data.data));
+});
 // supported cities by state API
-
-app.get('/api/:state', async (request, response) => {
-  // console.log(request.params.state);
+app.get('/api/:state', (request, response) => {
   const state = request.params.state;
-  console.log('This is the FIRST API');
-  const cityList = await axios
+  axios
     .get(
       'http://api.airvisual.com/v2/cities?' +
         `state=${state}&country=USA&key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb`
     )
-    .then(res => {
-      console.log(res);
-      return res.data.data;
-    })
+    .then(res => response.json(res.data.data))
     .catch(err => console.log(err));
-  // console.log(data);
-  response.json(cityList);
-  // response.json(request.params);
 });
-
 // This is the API that retrieves the AQI (Air Quality Index)
-
-app.get('/api/:state/:city', async (request, response) => {
+app.get('/api/:state/:city', (request, response) => {
   const state = request.params.state;
   const city = request.params.city;
-  console.log('This is the SECOND API');
-  // console.log(state);
-  // console.log(city);
-  const pollutionStats = await axios
+  axios
     .get(
       `http://api.airvisual.com/v2/city?city=${city}&` +
         `state=${state}&country=USA&key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb`
     )
-    .then(res => res.data.data.current.pollution)
+    .then(res => response.json(res.data.data.current.pollution))
     .catch(err => console.log(err));
-  // console.log(data);
-  response.json(pollutionStats);
-  // response.json(request.params);
 });
-
+// Picture API that retrieves a picture of the city that the user chooses
+app.get('/image/:city', (request, response) => {
+  const city = request.params.city;
+  axios
+    .get(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
+    .then(res => response.json(res.data.photos[0].image.web))
+    .catch(err => console.log(err));
+});
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`API listening on port ${port}...`);

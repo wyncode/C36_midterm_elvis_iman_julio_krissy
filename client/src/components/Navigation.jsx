@@ -18,7 +18,7 @@ const Navigation = () => {
       <nav className="menu">
         <img src={logo} className="logo-img" />
         <div className="menu__right">
-          <ul class="menu__list">
+          <ul className="menu__list">
             <li className="menu__list-item">
               <Link to="/" className="menu__link">
                 Home
@@ -36,9 +36,9 @@ const Navigation = () => {
               </Link>
             </li>
           </ul>
-          <form class="menu__search-form hide" method="POST">
+          <form className="menu__search-form hide" method="POST">
             <input
-              class="menu__search-input"
+              className="menu__search-input"
               placeholder="Type and hit enter"
             />
           </form>

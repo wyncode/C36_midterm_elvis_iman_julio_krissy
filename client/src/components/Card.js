@@ -42,10 +42,7 @@ export default function MediaCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          Compare with other city
         </Button>
       </CardActions>
     </Card>
