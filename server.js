@@ -1,12 +1,10 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-
 const axios = require('axios');
 const express = require('express');
 const path = require('path');
 const app = express();
-
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
@@ -15,7 +13,6 @@ if (process.env.NODE_ENV === 'production') {
     response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
-
 // let cities = [];
 
 app.get('/api', (request,response) => {
@@ -53,8 +50,6 @@ app.get('/image/:city', (request,response) => {
   .then(res => response.json(res.data.photos[0].image.web))
   .catch(err => console.log(err))
 })
-
-
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
