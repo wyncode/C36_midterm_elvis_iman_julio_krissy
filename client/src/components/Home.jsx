@@ -5,16 +5,14 @@ import Searchbar from './Searchbar';
 
 const Home = () => {
   return (
-    <div className="home">
-      {/* <Container>
-        <h3>Check Your Air Quality Anywhere in the US </h3>
-        <h4>
-          {' '}
-          <Dropdown />
-        </h4>
-      </Container> */}
-      <Dropdown />
-    </div>
+    <>
+      <div className="home">
+        <Dropdown />
+      </div>
+      <div className="about-footer">
+        <p>© 2020 AirAware</p>
+      </div>
+    </>
   );
 };
 
