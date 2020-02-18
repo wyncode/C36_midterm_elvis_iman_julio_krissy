@@ -2,61 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Searchbar from './Searchbar';
 import PollutionStats from './PollutionStats';
-
-const states = [
-  'Alabama',
-  'Alaska',
-  'Arizona',
-  'Arkansas',
-  'California',
-  'Colorado',
-  'Connecticut',
-  'Delaware',
-  'Florida',
-  'Georgia',
-  'Hawaii',
-  'Idaho',
-  'Illinois',
-  'Indiana',
-  'Iowa',
-  'Kansas',
-  'Kentucky',
-  'Louisiana',
-  'Maine',
-  'Maryland',
-  'Massachusetts',
-  'Michigan',
-  'Minnesota',
-  'Mississippi',
-  'Missouri',
-  'Montana',
-  'Nebraska',
-  'Nevada',
-  'New Hampshire',
-  'New Jersey',
-  'New Mexico',
-  'New York',
-  'North Carolina',
-  'North Dakota',
-  'Ohio',
-  'Oklahoma',
-  'Oregon',
-  'Pennsylvania',
-  'Rhode Island',
-  'South Carolina',
-  'South Dakota',
-  'Tennessee',
-  'Texas',
-  'Utah',
-  'Vermont',
-  'Virginia',
-  'Washington',
-  'West Virginia',
-  'Wisconsin',
-  'Wyoming'
-];
+import { generateStates } from '../index.jsx'
 
 const Dropdown = () => {
+  const states = generateStates();
   const [selectedCityCard, setSelectedCityCard] = useState([]);
   const [apiData, setApiData] = useState([]);
   const [dropdownState, setDropdownState] = useState('');
@@ -74,17 +23,28 @@ const Dropdown = () => {
   };
 
   const handleSelectCity = card => {
-    const isDuplicate = selectedCityCard.some(
-      selectedCard => selectedCard.stats.id === card.stats.id
-    );
-    if (isDuplicate) return;
-
     setSelectedCityCard([...selectedCityCard, card]);
+    reset();
+  };
+
+  const reset = () => {
     setApiCityData({});
     setCityUrl('');
     setDropdownState('');
     setQuery('');
-  };
+  }
+
+  const removeCard = card => {
+    dropdownState === '' ? setDropdownState(' ') : setDropdownState('')
+    const indexToRemove = selectedCityCard.findIndex( ({stats}) => {
+      return (stats.id === card.stats.id);
+    })
+    if (indexToRemove === -1) {
+      reset();
+      return;
+    }
+    selectedCityCard.splice(indexToRemove,1)
+  }
 
   // This useEffect retrieves an array of all supported cities in a state
   // when the user chooses a state from the dropdown box. The cities array
@@ -110,8 +70,11 @@ const Dropdown = () => {
   };
 
   useEffect(() => {
-    if (!query) return;
-
+    // Had to capitalize the first letter of the query because the stored 
+    // city names in selectedCityCard are returned capitalized by the API
+    if (!query || selectedCityCard.some( ({stats}) => stats.id === 
+    `${query[0].toUpperCase()+query.slice(1,query.length)}-${dropdownState}`) ) 
+    return;
     const fetchCityData = async () => {
       const requests = [
         axios.get(`/api/${dropdownState}/${query}`),
@@ -140,7 +103,7 @@ const Dropdown = () => {
             id="dropdown"
             onChange={handleDropdownChange}
           >
-            <option value={null}></option>
+            <option value={null}>{dropdownState}</option>
             {states.map((state, index) => {
               return (
                 <option key={index} value={state}>
@@ -165,6 +128,7 @@ const Dropdown = () => {
             key={card.stats.id}
             stats={card.stats}
             cityUrl={card.cityUrl}
+            remove={removeCard}
           />
         ))}
         {apiCityData.id && (
@@ -172,6 +136,7 @@ const Dropdown = () => {
             stats={apiCityData}
             cityUrl={cityUrl}
             handleSelectCity={handleSelectCity}
+            remove={removeCard}
           />
         )}
       </div>

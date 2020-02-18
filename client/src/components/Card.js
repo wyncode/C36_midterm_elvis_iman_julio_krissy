@@ -17,8 +17,10 @@ const useStyles = makeStyles({
     height: 140
   }
 });
-
-export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectCity, value }) {
+// Ask Tommy about how invoking functions work in event handlers like onClick, i.e, 
+// difference between onClick={() => handleSelectCity(value)}
+// and onClick={handleSelectCity(value)}
+export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectCity, value, remove }) {
   const classes = useStyles();
 
   return (
@@ -27,7 +29,7 @@ export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectC
         <CardMedia
           className={classes.media}
           image={cityUrl || 'placeholder.png'}
-          title="Contemplative Reptile"
+          // title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -45,6 +47,7 @@ export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectC
         {handleSelectCity && <Button onClick={() => handleSelectCity(value)} size="small" color="primary">
           Compare with other city
         </Button>}
+        <Button onClick={() => remove(value)}>Remove</Button> 
       </CardActions>
     </Card>
   );

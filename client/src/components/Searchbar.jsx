@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-const Searchbar = props => {
+const Searchbar = ({handleSubmit,handleSearchbarChange,cities}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <input list="cityList" onChange={props.handleSearchbarChange}></input>
+    <form onSubmit={handleSubmit}>
+      <input list="cityList" onChange={handleSearchbarChange}></input>
       <datalist id="cityList">
-        {props.cities.map((state, index) => {
+        {cities.map((state, index) => {
           return (
             <option key={index} value={state}>
               {state}
