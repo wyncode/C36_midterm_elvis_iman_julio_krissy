@@ -12,8 +12,6 @@ import Solutions from './Solutions';
 import Home from './Home';
 import Navigation from '../components/Navigation';
 
-import Datalist from '../styling/Datalist';
-
 class App extends React.Component {
   state = { serverMessage: '' };
 

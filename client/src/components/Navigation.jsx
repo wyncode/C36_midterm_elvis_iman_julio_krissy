@@ -16,7 +16,7 @@ const Navigation = () => {
   return (
     <div className="container center">
       <nav className="menu">
-        <img src={logo} className="logo-img" />
+        <img src={logo} alt="logo" className="logo-img" />
         <div className="menu__right">
           <ul className="menu__list">
             <li className="menu__list-item">

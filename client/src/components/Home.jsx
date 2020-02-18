@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navigation from './Navigation';
 import Dropdown from './Dropdown';
 import Searchbar from './Searchbar';
 
