@@ -49,7 +49,7 @@ app.get('/api/:state/:city', (request, response) => {
     )
     .then(res => {
       const { city, state, current } = res.data.data;
-      response.json({ id: `${city}-${state}`,  ...current.pollution })
+      response.json({ id: `${city}-${state}`,  ...current.pollution } )
     })
     .catch(err => console.log(err));
 });
@@ -60,7 +60,10 @@ app.get('/image/:city', (request, response) => {
   axios
     .get(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
     .then(res => response.json(res.data.photos[0].image.web))
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log('error fetching image', err);
+      response.json("https://i1.wp.com/assuredlegal.com.au/wp-content/uploads/2016/11/placeholder-city-buildings.jpg")
+    });
 });
 
 const port = process.env.PORT || 8080;
