@@ -23,11 +23,6 @@ const Dropdown = () => {
   };
 
   const handleSelectCity = card => {
-    const isDuplicate = selectedCityCard.some(
-      selectedCard => selectedCard.stats.id === card.stats.id
-    );
-    if (isDuplicate) return;
-
     setSelectedCityCard([...selectedCityCard, card]);
     setApiCityData({});
     setCityUrl('');
