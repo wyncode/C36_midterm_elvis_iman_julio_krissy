@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Dropdown from './Dropdown';
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function MediaCard(props) {
+export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectCity, value }) {
   const classes = useStyles();
 
   return (
@@ -25,25 +26,25 @@ export default function MediaCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.cityUrl || 'placeholder.png'}
+          image={cityUrl || 'placeholder.png'}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Stats: {props.stats}
+            Stats: {stats}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            AQI: {props.aqi}
+            AQI: {aqi}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Main Pollutant: {props.mainPoll}
+            Main Pollutant: {mainPoll}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        {handleSelectCity && <Button onClick={() => handleSelectCity(value)} size="small" color="primary">
           Compare with other city
-        </Button>
+        </Button>}
       </CardActions>
     </Card>
   );

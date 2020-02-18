@@ -57,37 +57,44 @@ const states = [
 ];
 
 const Dropdown = () => {
+  const [selectedCityCard, setSelectedCityCard] = useState([]);
   const [apiData, setApiData] = useState([]);
   const [dropdownState, setDropdownState] = useState('');
   // These are the hooks that were defined in the Searchbar component before
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
-  const [apiCityData, setApiCityData] = useState([]);
+  const [apiCityData, setApiCityData] = useState({});
   // This is the hook that was defined in the PollutionStats component
   const [cityUrl, setCityUrl] = useState('');
 
   //                                                       FIRST API BEG
   const handleDropdownChange = event => {
     setDropdownState(event.target.value);
+    setQuery('');
   };
+
+  const handleSelectCity = card => {
+    const isDuplicate = selectedCityCard.some(
+      selectedCard => selectedCard.stats.id === card.stats.id
+    );
+    if (isDuplicate) return;
+
+    setSelectedCityCard([...selectedCityCard, card]);
+    setApiCityData({});
+    setCityUrl('');
+    setDropdownState('');
+    setQuery('');
+  };
+
   // This useEffect retrieves an array of all supported cities in a state
   // when the user chooses a state from the dropdown box. The cities array
   // is saved to the apiData state
   useEffect(() => {
-    if (dropdownState == '') {
-      return;
-    }
-    const getApiData = async () => {
-      const cityList = await axios
-        .get(`/api/${dropdownState}`)
-        .then(res => res.data);
-      console.log(cityList.map(city => city.city));
-      setApiData(
-        cityList.map(city => {
-          return city.city;
-        })
-      );
+    if (!dropdownState) return;
 
+    const getApiData = async () => {
+      const { data } = await axios.get(`/api/${dropdownState}`);
+      setApiData(data.map(({ city }) => city));
     };
     getApiData();
   }, [dropdownState]);
@@ -103,38 +110,36 @@ const Dropdown = () => {
   };
 
   useEffect(() => {
-    if (query == '') {
-      return;
-    }
+    if (!query) return;
 
-    const getApiCityData = async () => {
-      const pollutionStats = await axios
-        .get(`/api/${dropdownState}/${query}`)
-        .then(res => res.data);
-      setApiCityData(pollutionStats);
-      // console.log(pollutionStats);
+    const fetchCityData = async () => {
+      const requests = [
+        axios.get(`/api/${dropdownState}/${query}`),
+        axios.get(`/image/${query.split(' ').join('-')}`)
+      ];
+      const [
+        { data: pollutionData },
+        { data: cityPicData }
+      ] = await Promise.all(requests);
+
+      setApiCityData({ ...pollutionData, city: query, state: dropdownState });
+      setCityUrl(cityPicData);
     };
-    getApiCityData();
 
-    const getCityPic = async () => {
-      const cityPicUrl = await axios
-
-        .get(`/image/${query.split(' ').join('-')}`)  // this converts space separated strings into the 
-        .then(res => res.data);                       // proper format for the picture API. e.g. 
-      setCityUrl(cityPicUrl);                         // "new york" --> "new-york"
-      // console.log('THIS IS POLLUTION STATS: ', cityPicUrl);
-    };
-    getCityPic();
-
+    fetchCityData();
   }, [query]);
-  //                                                       SECOND API END
+  //
 
   return (
     <>
       <div className="center-container">
         <div className="center-container">
           <label htmlFor="dropdown">Choose a state:</label>
-          <select id="dropdown" onChange={handleDropdownChange}>
+          <select
+            value={dropdownState}
+            id="dropdown"
+            onChange={handleDropdownChange}
+          >
             <option value={null}></option>
             {states.map((state, index) => {
               return (
@@ -155,9 +160,19 @@ const Dropdown = () => {
         )}
       </div>
       <div className="center-container">
-
-        {apiCityData.length !== 0 && (
-          <PollutionStats stats={apiCityData} city={query} cityUrl={cityUrl} />
+        {selectedCityCard.map(card => (
+          <PollutionStats
+            key={card.stats.id}
+            stats={card.stats}
+            cityUrl={card.cityUrl}
+          />
+        ))}
+        {apiCityData.id && (
+          <PollutionStats
+            stats={apiCityData}
+            cityUrl={cityUrl}
+            handleSelectCity={handleSelectCity}
+          />
         )}
       </div>
     </>

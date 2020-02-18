@@ -15,41 +15,53 @@ if (process.env.NODE_ENV === 'production') {
 }
 // let cities = [];
 
-app.get('/api', (request,response) => {
-  axios.get('http://api.airvisual.com/v2/states?country=USA&'
-  +`key=${process.env.API_KEY_K}`)
-  .then(res => response.json(res.data.data))
-})
+app.get('/api', (request, response) => {
+  axios
+    .get(
+      'http://api.airvisual.com/v2/states?country=USA&' +
+        `key=${process.env.API_KEY_K}`
+    )
+    .then(res => response.json(res.data.data));
+});
 
 // supported cities by state API
 
-app.get('/api/:state', (request,response) => {
+app.get('/api/:state', (request, response) => {
   const state = request.params.state;
-  axios.get("http://api.airvisual.com/v2/cities?"
-  + `state=${state}&country=USA&key=${process.env.API_KEY_K}`)
-  .then(res => response.json(res.data.data))
-  .catch(err => console.log(err))
-})
-
+  axios
+    .get(
+      'http://api.airvisual.com/v2/cities?' +
+        `state=${state}&country=USA&key=${process.env.API_KEY_K}`
+    )
+    .then(res => response.json(res.data.data))
+    .catch(err => console.log(err));
+});
 
 // This is the API that retrieves the AQI (Air Quality Index)
 
-app.get('/api/:state/:city', (request,response) => {
+app.get('/api/:state/:city', (request, response) => {
   const state = request.params.state;
-  const city = request.params.city;  
-  axios.get(`http://api.airvisual.com/v2/city?city=${city}&`
-  + `state=${state}&country=USA&key=${process.env.API_KEY_K}`)
-  .then(res => response.json(res.data.data.current.pollution))
-  .catch(err => console.log(err))
-})
+  const city = request.params.city;
+  axios
+    .get(
+      `http://api.airvisual.com/v2/city?city=${city}&` +
+        `state=${state}&country=USA&key=${process.env.API_KEY_K}`
+    )
+    .then(res => {
+      const { city, state, current } = res.data.data;
+      response.json({ id: `${city}-${state}`,  ...current.pollution })
+    })
+    .catch(err => console.log(err));
+});
 
 // Picture API that retrieves a picture of the city that the user chooses
-app.get('/image/:city', (request,response) => {
-  const city = request.params.city
-  axios.get(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
-  .then(res => response.json(res.data.photos[0].image.web))
-  .catch(err => console.log(err))
-})
+app.get('/image/:city', (request, response) => {
+  const city = request.params.city;
+  axios
+    .get(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
+    .then(res => response.json(res.data.photos[0].image.web))
+    .catch(err => console.log(err));
+});
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
