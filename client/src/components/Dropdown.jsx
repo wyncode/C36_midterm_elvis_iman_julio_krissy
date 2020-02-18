@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Searchbar from './Searchbar';
 import PollutionStats from './PollutionStats';
-import {generateStates} from '../index.jsx'
+import { generateStates } from '../index.jsx'
 
 const Dropdown = () => {
   const states = generateStates();
@@ -33,6 +33,7 @@ const Dropdown = () => {
     setCityUrl('');
     setDropdownState('');
     setQuery('');
+    console.log(selectedCityCard)
   };
 
   // This useEffect retrieves an array of all supported cities in a state
@@ -59,8 +60,11 @@ const Dropdown = () => {
   };
 
   useEffect(() => {
-    if (!query) return;
-
+    // Had to capitalize the first letter of the query because the stored 
+    // city names in selectedCityCard are returned capitalized by the API
+    if (!query || selectedCityCard.some( ({stats}) => stats.id === 
+    `${query[0].toUpperCase()+query.slice(1,query.length)}-${dropdownState}`) ) 
+    return;
     const fetchCityData = async () => {
       const requests = [
         axios.get(`/api/${dropdownState}/${query}`),
