@@ -2,15 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Solutions = () => {
-  return (
-    <div className="solutions">
-      {' '}
-      {/* <Navigation />
-      <Container>
-        <h4>Content of Solutions</h4>
-      </Container> */}
-    </div>
-  );
+  return <div className="solutions">Solution</div>;
 };
 
 export default Solutions;

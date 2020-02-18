@@ -2,27 +2,27 @@ import React from 'react';
 import AcceusJulio from './AboutImages/AcceusJulio.jpg';
 import BashirIman from './AboutImages/BashirIman.jpg';
 import HernandezElvis from './AboutImages/HernandezElvis.jpg';
-import { KeranovaKrisi } from './AboutImages/KeranoraKrisi.jpg';
-import { logo } from './logo.png';
+import KeranoraKrisi from './AboutImages/KeranoraKrisi.jpg';
 
 const About = () => {
   return (
     <>
       <div className="about-body">
         <p>
-          AirAware is a consulting company that provides business and
-          individuals with everyday solutions and strategies about air
-          pollution.
+          AirAware is a consulting company that provides businesses and
+          individuals with everyday air pollution information in the United
+          States and strategies about air pollution.
         </p>
       </div>
-      <img src={logo} alt="logo" />
-      <div className="about-images">
-        <img src={AcceusJulio} />
-        <img src={BashirIman} />
-        <img src={HernandezElvis} />
-        <img src={KeranovaKrisi} />
+      <div id="about-images">
+        <img id="about-person" src={AcceusJulio} alt="image of Juluio" />
+        <img id="about-person" src={BashirIman} alt="image of Iman" />
+        <img id="about-person" src={HernandezElvis} alt="image of Elvis" />
+        <img id="about-person" src={KeranoraKrisi} alt="image of Krisi" />
       </div>
-      <div className="about-footer">Contact us at breate@airaware.com</div>
+      <div className="about-footer">
+        <p>© 2020 AirAware</p>
+      </div>
     </>
   );
 };
