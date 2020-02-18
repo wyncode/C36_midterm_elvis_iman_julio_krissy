@@ -27,7 +27,7 @@ export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectC
         <CardMedia
           className={classes.media}
           image={cityUrl || 'placeholder.png'}
-          title="Contemplative Reptile"
+          // title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
