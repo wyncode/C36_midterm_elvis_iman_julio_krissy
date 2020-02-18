@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 // let cities = [];
-
 app.get('/api', (request, response) => {
   axios
     .get(
@@ -23,9 +22,7 @@ app.get('/api', (request, response) => {
     )
     .then(res => response.json(res.data.data));
 });
-
 // supported cities by state API
-
 app.get('/api/:state', (request, response) => {
   const state = request.params.state;
   axios
@@ -36,9 +33,7 @@ app.get('/api/:state', (request, response) => {
     .then(res => response.json(res.data.data))
     .catch(err => console.log(err));
 });
-
 // This is the API that retrieves the AQI (Air Quality Index)
-
 app.get('/api/:state/:city', (request, response) => {
   const state = request.params.state;
   const city = request.params.city;
@@ -49,20 +44,23 @@ app.get('/api/:state/:city', (request, response) => {
     )
     .then(res => {
       const { city, state, current } = res.data.data;
-      response.json({ id: `${city}-${state}`,  ...current.pollution })
+      response.json({ id: `${city}-${state}`, ...current.pollution });
     })
     .catch(err => console.log(err));
 });
-
 // Picture API that retrieves a picture of the city that the user chooses
 app.get('/image/:city', (request, response) => {
   const city = request.params.city;
   axios
     .get(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
     .then(res => response.json(res.data.photos[0].image.web))
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log('error fetching image', err);
+      response.json(
+        'https://i1.wp.com/assuredlegal.com.au/wp-content/uploads/2016/11/placeholder-city-buildings.jpg'
+      );
+    });
 });
-
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`API listening on port ${port}...`);
