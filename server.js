@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('/api', (request,response) => {
   axios.get('http://api.airvisual.com/v2/states?country=USA&'
-  +'key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb')
+  +`key=${process.env.API_KEY_K}`)
   .then(res => response.json(res.data.data))
 })
 
@@ -26,7 +26,7 @@ app.get('/api', (request,response) => {
 app.get('/api/:state', (request,response) => {
   const state = request.params.state;
   axios.get("http://api.airvisual.com/v2/cities?"
-  + `state=${state}&country=USA&key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb`)
+  + `state=${state}&country=USA&key=${process.env.API_KEY_K}`)
   .then(res => response.json(res.data.data))
   .catch(err => console.log(err))
 })
@@ -38,7 +38,7 @@ app.get('/api/:state/:city', (request,response) => {
   const state = request.params.state;
   const city = request.params.city;  
   axios.get(`http://api.airvisual.com/v2/city?city=${city}&`
-  + `state=${state}&country=USA&key=7b3d5fdd-6553-4cae-b375-dadf066b8ffb`)
+  + `state=${state}&country=USA&key=${process.env.API_KEY_K}`)
   .then(res => response.json(res.data.data.current.pollution))
   .catch(err => console.log(err))
 })
