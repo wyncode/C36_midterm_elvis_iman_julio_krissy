@@ -23,18 +23,28 @@ const Dropdown = () => {
   };
 
   const handleSelectCity = card => {
-    const isDuplicate = selectedCityCard.some(
-      selectedCard => selectedCard.stats.id === card.stats.id
-    );
-    if (isDuplicate) return;
-
     setSelectedCityCard([...selectedCityCard, card]);
+    reset();
+  };
+
+  const reset = () => {
     setApiCityData({});
     setCityUrl('');
     setDropdownState('');
     setQuery('');
-    console.log(selectedCityCard)
-  };
+  }
+
+  const removeCard = card => {
+    dropdownState === '' ? setDropdownState(' ') : setDropdownState('')
+    const indexToRemove = selectedCityCard.findIndex( ({stats}) => {
+      return (stats.id === card.stats.id);
+    })
+    if (indexToRemove === -1) {
+      reset();
+      return;
+    }
+    selectedCityCard.splice(indexToRemove,1)
+  }
 
   // This useEffect retrieves an array of all supported cities in a state
   // when the user chooses a state from the dropdown box. The cities array
@@ -93,7 +103,7 @@ const Dropdown = () => {
             id="dropdown"
             onChange={handleDropdownChange}
           >
-            <option value={null}></option>
+            <option value={null}>{dropdownState}</option>
             {states.map((state, index) => {
               return (
                 <option key={index} value={state}>
@@ -118,6 +128,7 @@ const Dropdown = () => {
             key={card.stats.id}
             stats={card.stats}
             cityUrl={card.cityUrl}
+            remove={removeCard}
           />
         ))}
         {apiCityData.id && (
@@ -125,6 +136,7 @@ const Dropdown = () => {
             stats={apiCityData}
             cityUrl={cityUrl}
             handleSelectCity={handleSelectCity}
+            remove={removeCard}
           />
         )}
       </div>
