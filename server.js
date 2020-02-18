@@ -19,7 +19,7 @@ app.get('/api', (request, response) => {
   axios
     .get(
       'http://api.airvisual.com/v2/states?country=USA&' +
-        `key=${process.env.API_KEY_K}`
+        `key=${process.env.API_KEY_E}`
     )
     .then(res => response.json(res.data.data));
 });
@@ -31,7 +31,7 @@ app.get('/api/:state', (request, response) => {
   axios
     .get(
       'http://api.airvisual.com/v2/cities?' +
-        `state=${state}&country=USA&key=${process.env.API_KEY_K}`
+        `state=${state}&country=USA&key=${process.env.API_KEY_E}`
     )
     .then(res => response.json(res.data.data))
     .catch(err => console.log(err));
@@ -45,7 +45,7 @@ app.get('/api/:state/:city', (request, response) => {
   axios
     .get(
       `http://api.airvisual.com/v2/city?city=${city}&` +
-        `state=${state}&country=USA&key=${process.env.API_KEY_K}`
+        `state=${state}&country=USA&key=${process.env.API_KEY_E}`
     )
     .then(res => {
       const { city, state, current } = res.data.data;
