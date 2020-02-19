@@ -11,31 +11,21 @@ body {
 .center-container {
   display: flex;
   justify-content: center;
-  padding-right: 0.7rem;
+  padding-right: 0.3rem;
   margin: 5px;
   align-items: center;
   position: relative;
 }
-
-#dropdown {
-  margin-left: 5px;
-  width: 13.7rem;
-  height: 2.1rem;
-  border-radius: 0.2rem;
-}
-
-
-                                                                           /* TESTING */
-
+                                                                       /* DROPDOWN BOX BEG */
 .center-container:after {
   content: '>';
-  font: 17px "Consolas", monospace;
+  font: 17.4px "Consolas", monospace;
   color: rgb(180, 179, 179);
   transform: rotate(90deg);
-  right: 1.1rem;
+  right: 0.4rem;
   bottom: 1rem;
   /*Adjust for position however you want*/  
-  top: 18px;
+  top: 15.2px;
   position: absolute;
 }
 
@@ -48,37 +38,44 @@ body {
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #bebebe;
-  /* -ms-word-break: normal; */
-  /* word-break: normal; */
+  width: 13.7rem;
+  height: 2.1rem;
+  border-radius: 0.2rem;
 }
 
-                                                                         /* TESTING */
-
-
-
-
-
-
-
-
-
-
-
-
+/* #dropdown {
+  margin-left: 5px;
+  width: 13.7rem;
+  height: 2.1rem;
+  border-radius: 0.2rem;
+} */
+                                                                      /* DROPDOWN BOX END */
 .navigation {
   display: flex;
   justify-content: center;
 }
+                                                                      /* SEARCH BOX BEG */
 
-#cityList {
-  border-radius: 10px;
-  padding: -1rem;
+#citySearchbar::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
-#cityList input {
-  margin: 5px;
+#citySearchbar {
+  font-size: 0.8rem;
+  padding:0 12px;
+  margin: 0 1rem 0 0; 
+  width: 13.7rem;
+  height: 2.1rem;
+  border-radius: 0.2rem;
+  border: 1px solid #bebebe;
+  background-image: url('../components/AboutImages/downarrow.png');
+  background-repeat: no-repeat;
+  background-size: 0.75rem;
+  background-position: 12.3rem,center;
+  
 }
 
+                                                                       /* SEARCH BOX END */
 .about-body {
   display: flex;
   justify-content: center;

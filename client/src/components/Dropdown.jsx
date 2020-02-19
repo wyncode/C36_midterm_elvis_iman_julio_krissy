@@ -55,6 +55,7 @@ const Dropdown = () => {
     const getApiData = async () => {
       const { data } = await axios.get(`/api/${dropdownState}`);
       setApiData(data.map(({ city }) => city));
+      console.log(data)
     };
     getApiData();
   }, [dropdownState]);

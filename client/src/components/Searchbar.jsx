@@ -3,8 +3,13 @@ import React from 'react';
 
 const Searchbar = ({handleSubmit,handleSearchbarChange,cities}) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <input list="cityList" onChange={handleSearchbarChange}></input>
+    <form id="searchbar-form" onSubmit={handleSubmit}>
+      <input 
+      id ="citySearchbar" 
+      list="cityList" 
+      // placeholder="City of ..."
+      onChange={handleSearchbarChange}>
+      </input>
       <datalist id="cityList">
         {cities.map((state, index) => {
           return (
