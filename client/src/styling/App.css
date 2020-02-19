@@ -157,6 +157,16 @@ body {
   margin: 0;
 }
 
+.top-banner-inner-pages {
+  background-image: url('../components/AboutImages/banner\ image\ side\ pagea.jpg');
+  height: 55vh;
+  width: 100%;
+  background-size: 100% 35vh;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+}
+
 .dropdowns {
   margin: 0;
   padding-top: 50px;

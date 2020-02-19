@@ -7,6 +7,9 @@ import KeranoraKrisi from './AboutImages/KeranoraKrisi.jpg';
 const About = () => {
   return (
     <>
+        <div className="top-banner-inner-pages">
+        <div id="solutions">Header for About</div>
+        </div>
       <div className="about-body">
         <p>
           AirAware is a consulting company that provides businesses and

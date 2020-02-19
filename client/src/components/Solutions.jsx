@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 const Solutions = () => {
   return (
     <>
-      <div id="solutions-bannerimage">
+    <div className="top-banner-inner-pages">
         <div id="solutions">Solution</div>
+        </div>
         <div id="solutions-container">
           Good Moderate Hazardous Toxic
           <p>
@@ -13,7 +14,6 @@ const Solutions = () => {
             from website.
           </p>
         </div>
-      </div>
       <div className="bottom-image">
         <div className="bottom-hero-text">
           <h5>Track your air quality anywhere in the US</h5>
