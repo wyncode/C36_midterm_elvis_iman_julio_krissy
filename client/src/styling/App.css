@@ -109,8 +109,18 @@ body {
 }
 
 .about-body {
+  font-size: 18px;
   display: flex;
   justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  flex-direction: column;
+}
+
+.solutions-body {
+  font-size: 18px;
+  display: flex;
   text-align: center;
   padding: 10px;
   margin: 5px;
@@ -159,12 +169,20 @@ body {
 
 .top-banner-inner-pages {
   background-image: url('../components/AboutImages/banner\ image\ side\ pagea.jpg');
-  height: 55vh;
+  height: 40vh;
   width: 100%;
   background-size: 100% 35vh;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   padding: 0;
   margin: 0;
+}
+
+#title-inner-pages {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 7%
 }
 
 .dropdowns {

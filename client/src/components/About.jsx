@@ -8,7 +8,7 @@ const About = () => {
   return (
     <>
         <div className="top-banner-inner-pages">
-        <div id="solutions">Header for About</div>
+        <div id="title-inner-pages">Our Mission is to Provide Awareness on Air Solutions</div>
         </div>
       <div className="about-body">
         <p>
