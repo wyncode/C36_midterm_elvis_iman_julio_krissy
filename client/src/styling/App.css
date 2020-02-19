@@ -118,6 +118,16 @@ body {
   flex-direction: column;
 }
 
+h10 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+h9 {
+  font-size: 20px;
+  font-style: italic;
+}
+
 .solutions-body {
   font-size: 18px;
   display: flex;
@@ -178,7 +188,7 @@ body {
 }
 
 #title-inner-pages {
-  font-size: 30px;
+  font-size: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
