@@ -28,7 +28,7 @@ app.get('/api/:state', (request, response) => {
   axios
     .get(
       'http://api.airvisual.com/v2/cities?' +
-        `state=${state}&country=USA&key=${process.env.API_KEY_J}`
+        `state=${state}&country=USA&key=${process.env.API_KEY_K}`
     )
     .then(res => response.json(res.data.data))
     .catch(err => console.log(err));
@@ -40,11 +40,11 @@ app.get('/api/:state/:city', (request, response) => {
   axios
     .get(
       `http://api.airvisual.com/v2/city?city=${city}&` +
-        `state=${state}&country=USA&key=${process.env.API_KEY_J}`
+        `state=${state}&country=USA&key=${process.env.API_KEY_K}`
     )
     .then(res => {
       const { city, state, current } = res.data.data;
-      response.json({ id: `${city}-${state}`,  ...current.pollution } )
+      response.json({ id: `${city}-${state}`, ...current.pollution });
     })
     .catch(err => console.log(err));
 });
@@ -56,7 +56,9 @@ app.get('/image/:city', (request, response) => {
     .then(res => response.json(res.data.photos[0].image.web))
     .catch(err => {
       console.log('error fetching image', err);
-      response.json("https://i1.wp.com/assuredlegal.com.au/wp-content/uploads/2016/11/placeholder-city-buildings.jpg")
+      response.json(
+        'https://i1.wp.com/assuredlegal.com.au/wp-content/uploads/2016/11/placeholder-city-buildings.jpg'
+      );
     });
 });
 const port = process.env.PORT || 8080;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,98 +21,150 @@ const useStyles = makeStyles({
 });
 
 const monthToMonth = {
-  "01": "January",
-  "02": "February",
-  "03": "March",
-  "04": "April",
-  "05": "May",
-  "06": "June",
-  "07": "July",
-  "08": "August",
-  "09": "September",
-  "10": "October",
-  "11": "November",
-  '12': "December"
-}
+  '01': 'January',
+  '02': 'February',
+  '03': 'March',
+  '04': 'April',
+  '05': 'May',
+  '06': 'June',
+  '07': 'July',
+  '08': 'August',
+  '09': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December'
+};
 
 const hazardLevels = [
   {
-    "level": {
-    "hazard":"Good",
-    "range":50,
-    "color":"green"}
+    level: {
+      hazard: 'Good',
+      range: 50,
+      color: 'green'
+    }
   },
   {
-    "level": {
-    "hazard":"Moderate",
-    "range":100,
-    "color":"yellow"}
+    level: {
+      hazard: 'Moderate',
+      range: 100,
+      color: 'yellow'
+    }
   },
   {
-    "level": {
-    "hazard":"Unhealthy for sensitive groups",
-    "range":150,
-    "color":"orange"}
+    level: {
+      hazard: 'Unhealthy for sensitive groups',
+      range: 150,
+      color: 'orange'
+    }
   },
   {
-    "level": {
-    "hazard":"Unhealthy",
-    "range":200,
-    "color":"red"}
+    level: {
+      hazard: 'Unhealthy',
+      range: 200,
+      color: 'red'
+    }
   },
   {
-    "level": {
-    "hazard":"Very Unhealthy",
-    "range":300,
-    "color":"purple"}
+    level: {
+      hazard: 'Very Unhealthy',
+      range: 300,
+      color: 'purple'
+    }
   },
   {
-    "level":{
-    "hazard":"Hazardous",
-    "range":500,
-    "color":"maroon"}
+    level: {
+      hazard: 'Hazardous',
+      range: 500,
+      color: 'maroon'
+    }
   }
-    ]
+];
 
-const aqiToCig = 1/72; // converts the AQI to approximate number of cigarettes smoked per day
+const aqiToCig = 1 / 72; // converts the AQI to approximate number of cigarettes smoked per day
 
-export default function MediaCard({ date, aqi, cityUrl, mainPoll, value, remove }) {
-
+export default function MediaCard({
+  date,
+  aqi,
+  cityUrl,
+  mainPoll,
+  value,
+  remove
+}) {
   const classes = useStyles();
-
+  const formattedCity = value.stats.id.split('-').join(', ');
+  const formattedDate =
+    monthToMonth[date.slice(5, 7)] +
+    ' ' +
+    date.slice(8, 10) +
+    `, ${date.slice(0, 4)}`;
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={cityUrl || 'placeholder.png'}
+          image={cityUrl}
           title="Contemplative Reptile"
         />
         <CardContent className="card-actions">
           <Typography gutterBottom variant="h5" component="h2">
-            {value.stats.id.split("-").join(', ')} <br></br>
-            {monthToMonth[date.slice(5,7)] + " " + date.slice(8,10) + `, ${date.slice(0,4)}`}
+            {formattedCity} <br></br>
+            {formattedDate}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <h3 style={{margin:0,color:'black'}}>AQI: {aqi}</h3>
+            <h3 style={{ margin: 0, color: 'black' }}>AQI: {aqi}</h3>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          <p style={{color:'black',marginTop:'0.5rem', marginBottom:'0.2rem'}}>Main Pollutant: {mainPoll}</p>
+            <p
+              style={{
+                color: 'black',
+                marginTop: '0.5rem',
+                marginBottom: '0.2rem'
+              }}
+            >
+              Main Pollutant: {mainPoll}
+            </p>
           </Typography>
           <Typography>
-            Cigarettes per day: {(aqi*aqiToCig).toPrecision(2)} <br></br>
-            <p style={{marginTop:'0.5rem'}}>Hazard level: <span style={
-              {
-                color: `${hazardLevels.find(({level}) => aqi <= level.range).level.color}`,
-              }
-              }>
-              {hazardLevels.find(({level}) => aqi <= level.range).level.hazard}</span>
-              </p>     
+            Cigarettes per day: {(aqi * aqiToCig).toPrecision(2)} <br></br>
+            <p style={{ marginTop: '0.5rem' }}>
+              Hazard level:{' '}
+              <span
+                style={{
+                  color: `${
+                    hazardLevels.find(({ level }) => aqi <= level.range).level
+                      .color
+                  }`
+                }}
+              >
+                {
+                  hazardLevels.find(({ level }) => aqi <= level.range).level
+                    .hazard
+                }
+              </span>
+            </p>
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className="card-actions">
-        <Button className="card-actions" onClick={() => remove(value)}>Remove</Button>
+        <Button className="card-actions" onClick={() => remove(value)}>
+          Remove
+        </Button>
+        <Link
+          to={{
+            pathname: `/city/${value.stats.id.split('-')[0]}`,
+            state: {
+              date,
+              aqi,
+              cityUrl,
+              mainPoll,
+              value,
+              formattedCity,
+              formattedDate
+            }
+          }}
+        >
+          <Button className="card-actions">Details</Button>
+        </Link>
       </CardActions>
     </Card>
   );

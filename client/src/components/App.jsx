@@ -3,6 +3,7 @@ import '../styling/App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from './About';
 import Solutions from './Solutions';
+import OneCity from './OneCity';
 
 //import Dropdown from './Dropdown';
 // import Container from 'react-bootstrap/Container';
@@ -24,6 +25,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/city/:city" component={OneCity} />
           <Route exact path="/solutions" component={Solutions} />
         </Switch>
         <div className="about-footer">
