@@ -61,7 +61,7 @@ body {
 }
 
 #citySearchbar {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding:0 12px;
   margin: 0 1rem 0 0; 
   width: 13.7rem;
@@ -74,8 +74,21 @@ body {
   background-position: 12.3rem,center;
   
 }
-
                                                                        /* SEARCH BOX END */
+/* THIS IS THE SUBMIT BUTTON FOR THE SEARCH CITY FORM */
+#checkCity {
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 3.7px;
+    /* border-right: 1px solid white; */
+    font-size: 0.75rem;
+    font-weight: bolder;
+    margin-right: 1.1rem;
+    width: 9.5rem;
+    height: 2.4rem;
+}
+
 .about-body {
   display: flex;
   justify-content: center;

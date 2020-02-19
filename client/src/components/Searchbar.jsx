@@ -19,7 +19,7 @@ const Searchbar = ({handleSubmit,handleSearchbarChange,cities}) => {
           );
         })}
       </datalist>
-      <input type="submit"></input>
+      <input id="checkCity" type="submit" value="CHECK CITY"></input>
     </form>
   );
 };
