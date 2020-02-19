@@ -36,7 +36,7 @@ const Dropdown = () => {
     setQuery('');
     setSearch('');
   };
-                                                                                    // fix id issue here \/ \/ \/ \/
+
   const removeCard = card => {
     dropdownState === '' ? setDropdownState(' ') : setDropdownState('');
     const indexToRemove = selectedCityCard.findIndex(({ stats }) => {
@@ -49,7 +49,7 @@ const Dropdown = () => {
     selectedCityCard.splice(indexToRemove, 1);
     setSearch('');
   };
-                                                                                    // ^^^^^
+
   // This useEffect retrieves an array of all supported cities in a state
   // when the user chooses a state from the dropdown box. The cities array
   // is saved to the apiData state
@@ -65,14 +65,14 @@ const Dropdown = () => {
   //                                                       FIRST API END
   //                                                       SECOND API BEG
   const handleSearchbarChange = event => {
-    setSearch(event.target.value.toLowerCase());
+    setSearch(event.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     setQuery(search);
   };
-                                                                                    // fix id issue here \/ \/ \/ \/
+
   useEffect(() => {
     // Had to capitalize the first letter of the query because the stored
     // city names in selectedCityCard are returned capitalized by the API
@@ -90,7 +90,7 @@ const Dropdown = () => {
     const fetchCityData = async () => {
       const requests = [
         axios.get(`/api/${dropdownState}/${query}`),
-        axios.get(`/image/${query.split(' ').join('-')}`)
+        axios.get(`/image/${query.toLowerCase().split(' ').join('-')}`)
       ];
       const [
         { data: pollutionData },
@@ -102,7 +102,6 @@ const Dropdown = () => {
 
     fetchCityData();
   }, [query]);
-                                                                                                //   ^^^^^^^^
 
   return (
     <div className="top-banner">
@@ -142,7 +141,6 @@ const Dropdown = () => {
           onClick={() => handleSelectCity({apiCityData, cityUrl})}
           >COMPARE CITIES</button>
         </div>
-                                                                        {/* id issue here as well probably */}
       <div className="center-container">
         {selectedCityCard.map(card => (
           <PollutionStats

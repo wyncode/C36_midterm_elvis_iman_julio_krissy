@@ -11,7 +11,6 @@ const PollutionStats = ({ stats, cityUrl, remove }) => {
       mainPoll={stats.mainus}
       cityUrl={cityUrl}
       value={{ stats, cityUrl }}
-      // handleSelectCity={handleSelectCity}
       remove={remove}
     />
   );
