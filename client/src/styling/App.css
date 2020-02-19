@@ -14,11 +14,56 @@ body {
   padding-right: 0.7rem;
   margin: 5px;
   align-items: center;
+  position: relative;
 }
 
 #dropdown {
   margin-left: 5px;
+  width: 13.7rem;
+  height: 2.1rem;
+  border-radius: 0.2rem;
 }
+
+
+                                                                           /* TESTING */
+
+.center-container:after {
+  content: '>';
+  font: 17px "Consolas", monospace;
+  color: rgb(180, 179, 179);
+  transform: rotate(90deg);
+  right: 1.1rem;
+  bottom: 1rem;
+  /*Adjust for position however you want*/  
+  top: 18px;
+  position: absolute;
+}
+
+.center-container select {
+  appearance: none;
+  padding: 0px 12px;
+  font-size: 12px;
+  line-height: 1.75;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #bebebe;
+  /* -ms-word-break: normal; */
+  /* word-break: normal; */
+}
+
+                                                                         /* TESTING */
+
+
+
+
+
+
+
+
+
+
+
 
 .navigation {
   display: flex;
