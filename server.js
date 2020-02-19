@@ -44,7 +44,7 @@ app.get('/api/:state/:city', (request, response) => {
     )
     .then(res => {
       const { city, state, current } = res.data.data;
-      response.json({ id: `${city}-${state}`, ...current.pollution });
+      response.json({ id: `${city}-${state}`, ...current.pollution, ...current.weather });
     })
     .catch(err => console.log(err));
 });

@@ -244,3 +244,15 @@ h9 {
 .bottom-hero-text h5 {
   color: rgb(34, 34, 104);
 }
+
+.disabledButton{
+  background-color: darkgrey !important;
+}
+
+#date{
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}

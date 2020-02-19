@@ -88,7 +88,8 @@ export default function MediaCard({
   cityUrl,
   mainPoll,
   value,
-  remove
+  remove,
+  weather
 }) {
   const classes = useStyles();
   const formattedCity = value.stats.id.split('-').join(', ');
@@ -98,17 +99,32 @@ export default function MediaCard({
     date.slice(8, 10) +
     `, ${date.slice(0, 4)}`;
   return (
+    <Link
+          to={{
+            pathname: `/city/${value.stats.id.split('-')[0]}`,
+            state: {
+              date,
+              aqi,
+              cityUrl,
+              mainPoll,
+              value,
+              formattedCity,
+              formattedDate,
+              weather
+            }
+          }}
+        >
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={cityUrl}
-          title="Contemplative Reptile"
+          title={cityUrl}
         />
         <CardContent className="card-actions">
           <Typography gutterBottom variant="h5" component="h2">
             {formattedCity} <br></br>
-            {formattedDate}
+            <span id="date">{formattedDate}</span>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <h3 style={{ margin: 0, color: 'black' }}>AQI: {aqi}</h3>
@@ -149,23 +165,11 @@ export default function MediaCard({
         <Button className="card-actions" onClick={() => remove(value)}>
           Remove
         </Button>
-        <Link
-          to={{
-            pathname: `/city/${value.stats.id.split('-')[0]}`,
-            state: {
-              date,
-              aqi,
-              cityUrl,
-              mainPoll,
-              value,
-              formattedCity,
-              formattedDate
-            }
-          }}
-        >
+        
           <Button className="card-actions">Details</Button>
-        </Link>
+        
       </CardActions>
     </Card>
+    </Link>
   );
 }

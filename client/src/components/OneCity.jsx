@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const OneCity = ({ location }) => {
-  console.log(location.state);
+  console.log(location);
   return (
     <>
       <div id="OneCity-body">
@@ -11,6 +10,7 @@ const OneCity = ({ location }) => {
         <div id="onecity">{location.state.formattedDate}</div>
         <div id="onecity">{location.state.aqi}</div>
         <div id="onecity">{location.state.mainPoll}</div>
+        <div id="onecity">Current Temperature: {location.state.value.stats.tp} C&deg;</div>
         <div id="solutions-container">
           <p></p>
         </div>

@@ -15,10 +15,10 @@ const Dropdown = () => {
   const [apiCityData, setApiCityData] = useState({});
   // This is the hook that was defined in the PollutionStats component
   const [cityUrl, setCityUrl] = useState('');
+  const [disabledButton, setDisabledButton] = useState(true)
 
   //                                                       FIRST API BEG
   const handleDropdownChange = event => {
-    
     setDropdownState(event.target.value);
     setQuery('');
   };
@@ -27,6 +27,7 @@ const Dropdown = () => {
     const {apiCityData: stats, cityUrl} = card
     setSelectedCityCard([...selectedCityCard, {stats,cityUrl}]);
     reset();
+    setDisabledButton(true)
   };
 
   const reset = () => {
@@ -96,12 +97,18 @@ const Dropdown = () => {
         { data: pollutionData },
         { data: cityPicData }
       ] = await Promise.all(requests);
+      console.log(pollutionData)
       setApiCityData({ ...pollutionData, city: query, state: dropdownState });
       setCityUrl(cityPicData);
+      setDisabledButton(false)
     };
 
     fetchCityData();
   }, [query]);
+
+  const {tp, pr, hu, ws, wd, ic} = apiCityData
+  console.log('hey', { apiCityData, tp, pr, hu, ws, wd, ic})
+  
 
   return (
     <div className="top-banner">
@@ -134,9 +141,11 @@ const Dropdown = () => {
           />
         </div>
         
-        <div className="buttons-div">
+        <div className={"buttons-div"}>
           <button onClick={handleSubmit} id="checkCity">CHECK CITY</button>
-          <button 
+          <button
+          className={(disabledButton ? "disabledButton" : null)}
+          disabled={disabledButton}
           id="compare-cities"
           onClick={() => handleSelectCity({apiCityData, cityUrl})}
           >COMPARE CITIES</button>
@@ -148,6 +157,7 @@ const Dropdown = () => {
             stats={card.stats}
             cityUrl={card.cityUrl}
             remove={removeCard}
+            weather={{tp, pr, hu, ws, wd, ic}}
           />
         ))}
         {apiCityData.id && (
