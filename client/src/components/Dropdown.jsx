@@ -18,12 +18,14 @@ const Dropdown = () => {
 
   //                                                       FIRST API BEG
   const handleDropdownChange = event => {
+    
     setDropdownState(event.target.value);
     setQuery('');
   };
 
   const handleSelectCity = card => {
-    setSelectedCityCard([...selectedCityCard, card]);
+    const {apiCityData: stats, cityUrl} = card
+    setSelectedCityCard([...selectedCityCard, {stats,cityUrl}]);
     reset();
   };
 
@@ -34,7 +36,7 @@ const Dropdown = () => {
     setQuery('');
     setSearch('');
   };
-
+                                                                                    // fix id issue here \/ \/ \/ \/
   const removeCard = card => {
     dropdownState === '' ? setDropdownState(' ') : setDropdownState('');
     const indexToRemove = selectedCityCard.findIndex(({ stats }) => {
@@ -47,7 +49,7 @@ const Dropdown = () => {
     selectedCityCard.splice(indexToRemove, 1);
     setSearch('');
   };
-
+                                                                                    // ^^^^^
   // This useEffect retrieves an array of all supported cities in a state
   // when the user chooses a state from the dropdown box. The cities array
   // is saved to the apiData state
@@ -57,7 +59,6 @@ const Dropdown = () => {
     const getApiData = async () => {
       const { data } = await axios.get(`/api/${dropdownState}`);
       setApiData(data.map(({ city }) => city));
-      console.log(data)
     };
     getApiData();
   }, [dropdownState]);
@@ -71,7 +72,7 @@ const Dropdown = () => {
     event.preventDefault();
     setQuery(search);
   };
-
+                                                                                    // fix id issue here \/ \/ \/ \/
   useEffect(() => {
     // Had to capitalize the first letter of the query because the stored
     // city names in selectedCityCard are returned capitalized by the API
@@ -83,8 +84,9 @@ const Dropdown = () => {
           `${query[0].toUpperCase() +
             query.slice(1, query.length)}-${dropdownState}`
       )
-    )
+    ) {      
       return;
+    }
     const fetchCityData = async () => {
       const requests = [
         axios.get(`/api/${dropdownState}/${query}`),
@@ -94,14 +96,13 @@ const Dropdown = () => {
         { data: pollutionData },
         { data: cityPicData }
       ] = await Promise.all(requests);
-
       setApiCityData({ ...pollutionData, city: query, state: dropdownState });
       setCityUrl(cityPicData);
     };
 
     fetchCityData();
   }, [query]);
-  //
+                                                                                                //   ^^^^^^^^
 
   return (
     <div className="top-banner">
@@ -136,12 +137,13 @@ const Dropdown = () => {
         
         <div className="buttons-div">
           <button onClick={handleSubmit} id="checkCity">CHECK CITY</button>
-          <button id="compare-cities">COMPARE CITIES</button>
+          <button 
+          id="compare-cities"
+          onClick={() => handleSelectCity({apiCityData, cityUrl})}
+          >COMPARE CITIES</button>
         </div>
-
+                                                                        {/* id issue here as well probably */}
       <div className="center-container">
-      {/* <button onClick={handleSubmit} id="checkCity">CHECK CITY</button>
-      <button id="compare-cities">COMPARE CITIES</button> */}
         {selectedCityCard.map(card => (
           <PollutionStats
             key={card.stats.id}
@@ -154,7 +156,7 @@ const Dropdown = () => {
           <PollutionStats
             stats={apiCityData}
             cityUrl={cityUrl}
-            handleSelectCity={handleSelectCity}
+            // handleSelectCity={handleSelectCity}
             remove={removeCard}
           />
         )}

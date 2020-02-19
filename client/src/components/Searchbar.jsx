@@ -3,7 +3,8 @@ import React from 'react';
 
 const Searchbar = ({handleSubmit,handleSearchbarChange,cities, search}) => {
   return (
-    <form id="searchbar-form" onSubmit={handleSubmit}>
+                                              // onSubmit={handleSubmit}>
+    <form id="searchbar-form" onSubmit={handleSubmit}>                 
       <input 
       id ="citySearchbar" 
       list="cityList" 

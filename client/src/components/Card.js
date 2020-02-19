@@ -40,7 +40,7 @@ const monthToMonth = {
 
 const aqiToCig = 1/72; // converts the AQI to approximate number of cigarettes smoked per day
 
-export default function MediaCard({ date, aqi, cityUrl, mainPoll, handleSelectCity, value, remove }) {
+export default function MediaCard({ date, aqi, cityUrl, mainPoll, value, remove }) {
 
   const classes = useStyles();
 
@@ -50,7 +50,6 @@ export default function MediaCard({ date, aqi, cityUrl, mainPoll, handleSelectCi
         <CardMedia
           className={classes.media}
           image={cityUrl}
-          // title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -64,20 +63,11 @@ export default function MediaCard({ date, aqi, cityUrl, mainPoll, handleSelectCi
             Main Pollutant: {mainPoll}
           </Typography>
           <Typography>
-            Cigarettes per day: {(aqi*aqiToCig).toPrecision(2)}
+            Cigarettes per day: {(aqi*aqiToCig).toPrecision(2)} <br></br>     
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {handleSelectCity && (
-          <Button
-            onClick={() => handleSelectCity(value)}
-            size="small"
-            color="primary"
-          >
-            Compare
-          </Button>
-        )}
         <Button onClick={() => remove(value)}>Remove</Button>
       </CardActions>
     </Card>
