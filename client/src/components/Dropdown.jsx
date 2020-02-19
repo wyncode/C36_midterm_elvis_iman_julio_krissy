@@ -32,6 +32,7 @@ const Dropdown = () => {
     setCityUrl('');
     setDropdownState('');
     setQuery('');
+    setSearch('');
   };
 
   const removeCard = card => {
@@ -44,6 +45,7 @@ const Dropdown = () => {
       return;
     }
     selectedCityCard.splice(indexToRemove, 1);
+    setSearch('');
   };
 
   // This useEffect retrieves an array of all supported cities in a state
