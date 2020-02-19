@@ -38,13 +38,13 @@ const Solutions = () => {
               insert info about better Ventilation here
               </p>
         </div>
-      <div className="bottom-image">
+      {/* <div className="bottom-image">
         <div className="bottom-hero-text">
           <h5>Track your air quality anywhere in the US</h5>
           <h4>hello@airaware.com</h4>
           <h4>1-800-AIR-AWARE</h4>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
