@@ -13,42 +13,32 @@ body {
   justify-content: center;
   padding-right: 0.3rem;
   margin: 5px;
+  padding-top: 1rem;
   align-items: center;
   position: relative;
 }
+
+
                                                                        /* DROPDOWN BOX BEG */
-.center-container:after {
-  content: '>';
-  font: 17.4px "Consolas", monospace;
-  color: rgb(180, 179, 179);
-  transform: rotate(90deg);
-  right: 0.4rem;
-  bottom: 1rem;
-  /*Adjust for position however you want*/  
-  top: 15.2px;
-  position: absolute;
-}
 
 .center-container select {
   appearance: none;
   padding: 0px 12px;
+  margin-right: 0.8rem;
   font-size: 12px;
   line-height: 1.75;
-  color: rgb(0, 0, 0);
+  color: rgb(127, 124, 124);
   background-color: #ffffff;
-  background-image: none;
+  background-image: url('../components/AboutImages/downarrow.png');
+  background-repeat: no-repeat;
+  background-size: 0.75rem;
+  background-position: 12.3rem,center;
   border: 1px solid #bebebe;
   width: 13.7rem;
   height: 2.1rem;
   border-radius: 0.2rem;
 }
 
-/* #dropdown {
-  margin-left: 5px;
-  width: 13.7rem;
-  height: 2.1rem;
-  border-radius: 0.2rem;
-} */
                                                                       /* DROPDOWN BOX END */
 .navigation {
   display: flex;
@@ -63,7 +53,7 @@ body {
 #citySearchbar {
   font-size: 0.7rem;
   padding:0 12px;
-  margin: 0 1rem 0 0; 
+  margin-right: 0.8rem; 
   width: 13.7rem;
   height: 2.1rem;
   border-radius: 0.2rem;
@@ -75,8 +65,16 @@ body {
   
 }
                                                                        /* SEARCH BOX END */
+
+#searchbar-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+                                                                        /* BUTTONS BEG */
 /* THIS IS THE SUBMIT BUTTON FOR THE SEARCH CITY FORM */
-#checkCity {
+#checkCity, #compare-cities {
     background-color: tomato;
     color: white;
     border: none;
@@ -89,6 +87,18 @@ body {
     height: 2.4rem;
 }
 
+#checkCity {
+  margin-right: 0.6rem;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+
+}
+
+                                                                       /* BUTTONS BEG */
 .about-body {
   display: flex;
   justify-content: center;

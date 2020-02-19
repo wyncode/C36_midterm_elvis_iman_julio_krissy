@@ -107,15 +107,15 @@ const Dropdown = () => {
         <h1>Check Your Air Quality</h1>
         <h5>Discover real-time air quality and solutions anywhere in the US</h5>
       </div>
-      <div className="center-container dropdowns">
+
         <div className="center-container">
-          <label htmlFor="dropdown">Choose a state:</label>
+          <label htmlFor="dropdown"></label>
           <select
             value={dropdownState}
             id="dropdown"
             onChange={handleDropdownChange}
           >
-            <option value={null}>{dropdownState}</option>
+            <option value={null}>State</option>
             {states.map((state, index) => {
               return (
                 <option key={index} value={state}>
@@ -124,17 +124,22 @@ const Dropdown = () => {
               );
             })}
           </select>
-        </div>
-        {Boolean(dropdownState) && (
           <Searchbar
             handleSearchbarChange={handleSearchbarChange}
             handleSubmit={handleSubmit}
             cities={apiData}
             search={search}
           />
-        )}
-      </div>
+        </div>
+        
+        <div className="buttons-div">
+          <button onClick={handleSubmit} id="checkCity">CHECK CITY</button>
+          <button id="compare-cities">COMPARE CITIES</button>
+        </div>
+
       <div className="center-container">
+      {/* <button onClick={handleSubmit} id="checkCity">CHECK CITY</button>
+      <button id="compare-cities">COMPARE CITIES</button> */}
         {selectedCityCard.map(card => (
           <PollutionStats
             key={card.stats.id}

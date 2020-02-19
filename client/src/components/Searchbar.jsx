@@ -7,7 +7,7 @@ const Searchbar = ({handleSubmit,handleSearchbarChange,cities}) => {
       <input 
       id ="citySearchbar" 
       list="cityList" 
-      // placeholder="City of ..."
+      placeholder="City"
       onChange={handleSearchbarChange}>
       </input>
       <datalist id="cityList">
@@ -19,7 +19,6 @@ const Searchbar = ({handleSubmit,handleSearchbarChange,cities}) => {
           );
         })}
       </datalist>
-      <input id="checkCity" type="submit" value="CHECK CITY"></input>
     </form>
   );
 };
