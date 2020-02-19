@@ -98,7 +98,13 @@ body {
 
 }
 
-                                                                       /* BUTTONS BEG */
+                                                                       /* BUTTONS END */
+                                                                       
+.card-actions {
+  display: flex;
+  justify-content: center;
+}
+
 .about-body {
   display: flex;
   justify-content: center;

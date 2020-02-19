@@ -67,8 +67,8 @@ export default function MediaCard({ date, aqi, cityUrl, mainPoll, value, remove 
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button onClick={() => remove(value)}>Remove</Button>
+      <CardActions className="card-actions">
+        <Button className="card-actions" onClick={() => remove(value)}>Remove</Button>
       </CardActions>
     </Card>
   );
