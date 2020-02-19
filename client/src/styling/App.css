@@ -132,8 +132,8 @@ body {
   height: 85vh;
   width: 100%;
   background-size: 100% 85vh;
-  background-repeat: no-repeat;
-  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-position: -13rem;
   padding: 0;
   margin: 0;
 }
@@ -148,11 +148,15 @@ body {
 }
 
 .dropdown-titles h1 {
+  font-size: 4rem;
+  font-weight: 500;
   margin: 0;
-  padding-top: 30px;
+  padding-top: 5rem;
 }
 
 .dropdown-titles h5 {
+  font-size: 1rem;
+  color: #6e6e6e;
   margin: 10px 0;
 }
 
