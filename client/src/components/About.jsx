@@ -20,8 +20,12 @@ const About = () => {
         <img id="about-person" src={HernandezElvis} alt="image of Elvis" />
         <img id="about-person" src={KeranoraKrisi} alt="image of Krisi" />
       </div>
-      <div className="about-footer">
-        <p>© 2020 AirAware</p>
+      <div className="bottom-image">
+        <div className="bottom-hero-text">
+          <h5>Track your air quality anywhere in the US</h5>
+          <h4>hello@airaware.com</h4>
+          <h4>1-800-AIR-AWARE</h4>
+        </div>
       </div>
     </>
   );
