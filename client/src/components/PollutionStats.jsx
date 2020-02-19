@@ -6,7 +6,7 @@ const PollutionStats = ({ stats, cityUrl, handleSelectCity, remove }) => {
   const timeStamp = stats.ts.slice(0, 10);
   return (
     <Card
-      stats={timeStamp}
+      date={timeStamp}
       aqi={stats.aqius}
       mainPoll={stats.mainus}
       cityUrl={cityUrl}

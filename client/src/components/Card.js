@@ -20,7 +20,25 @@ const useStyles = makeStyles({
 // Ask Tommy about how invoking functions work in event handlers like onClick, i.e, 
 // difference between onClick={() => handleSelectCity(value)}
 // and onClick={handleSelectCity(value)}
-export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectCity, value, remove }) {
+
+const monthToMonth = {
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  "10": "October",
+  "11": "November",
+  '12': "December"
+}
+
+const aqiToCig = 1/72; // converts the AQI to approximate number of cigarettes smoked per day
+
+export default function MediaCard({ date, aqi, cityUrl, mainPoll, handleSelectCity, value, remove }) {
   const classes = useStyles();
 
   return (
@@ -33,13 +51,17 @@ export default function MediaCard({ stats, aqi, cityUrl, mainPoll, handleSelectC
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Stats: {stats}
+            {value.stats.id.split("-").join(', ')} <br></br>
+            {monthToMonth[date.slice(5,7)] + " " + date.slice(8,10) + `, ${date.slice(0,4)}`}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             AQI: {aqi}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Main Pollutant: {mainPoll}
+          </Typography>
+          <Typography>
+            Cigarettes per day: {(aqi*aqiToCig).toPrecision(2)}
           </Typography>
         </CardContent>
       </CardActionArea>
