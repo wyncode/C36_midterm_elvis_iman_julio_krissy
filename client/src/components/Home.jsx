@@ -1,19 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
-import Searchbar from './Searchbar';
 
 const Home = () => {
   return (
     <div className="home">
-      {/* <Container>
-        <h3>Check Your Air Quality Anywhere in the US </h3>
-        <h4>
-          {' '}
-          <Dropdown />
-        </h4>
-      </Container> */}
       <Dropdown />
+      <div className="bottom-image">
+        <div className="bottom-hero-text">
+          <h5>Track your air quality anywhere in the US</h5>
+          <h4>hello@airaware.com</h4>
+          <h4>1-800-AIR-AWARE</h4>
+        </div>
+      </div>
     </div>
   );
 };

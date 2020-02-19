@@ -26,6 +26,9 @@ class App extends React.Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/solutions" component={Solutions} />
         </Switch>
+        <div className="about-footer">
+          <p>© 2020 AirAware</p>
+        </div>
       </BrowserRouter>
     );
   }

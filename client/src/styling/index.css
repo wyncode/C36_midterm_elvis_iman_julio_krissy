@@ -8,11 +8,23 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.nav-bar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fef9f4;
+}
+.nav-bar ul {
+  height: 100px;
+}
+
 .menu {
   display: flex;
-  padding: 0px 100px;
   justify-content: space-between;
   list-style: none;
+  padding: 0 40px;
+  margin: 0;
   position: relative;
 }
 
@@ -29,8 +41,7 @@ body {
 }
 
 .logo-img {
-  width: 215px;
-  height: 200px;
+  height: 100%;
   justify-content: center;
 }
 
