@@ -154,18 +154,6 @@ h9 {
   padding: 10px;
 }
 
-.about-footer {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 5x;
-  background-color: rgb(198, 230, 241);
-  height: 2.5rem; /* Footer height */
-}
-
 .top-banner {
   background-image: url('../components/AboutImages/banner\ image.jpg');
   height: 85vh;
@@ -237,10 +225,38 @@ h9 {
 .bottom-hero-text {
   text-align: center;
   margin-top: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.bottom-hero-text h4 {
+
+#footer-subtitle {
+  font-size: 22px;
+  color: #00305b;
+}
+
+#footer-contact {
+  font-size: 40px;
   color: white;
+  font-style: bold;
+  font-weight: 1000;
 }
-.bottom-hero-text h5 {
-  color: rgb(34, 34, 104);
+
+#footer-contact-number {
+  font-size: 20px;
+  color: white;
+  font-style: bold;
+  font-weight: 1000;
+}
+
+.about-footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 5x;
+  background-color: rgb(198, 230, 241);
+  height: 2.5rem; /* Footer height */
 }

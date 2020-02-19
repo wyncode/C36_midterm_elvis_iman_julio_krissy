@@ -12,6 +12,7 @@ import OneCity from './OneCity';
 
 import Home from './Home';
 import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 
 class App extends React.Component {
   state = { serverMessage: '' };
@@ -28,9 +29,7 @@ class App extends React.Component {
           <Route exact path="/city/:city" component={OneCity} />
           <Route exact path="/solutions" component={Solutions} />
         </Switch>
-        <div className="about-footer">
-          <p>© 2020 AirAware</p>
-        </div>
+        <Footer />
       </BrowserRouter>
     );
   }

@@ -18,17 +18,18 @@ const About = () => {
         </p>
       </div>
       <div id="about-images">
-        <img id="about-person" src={AcceusJulio} alt="image of Juluio" />
-        <img id="about-person" src={BashirIman} alt="image of Iman" />
-        <img id="about-person" src={HernandezElvis} alt="image of Elvis" />
-        <img id="about-person" src={KeranoraKrisi} alt="image of Krisi" />
-      </div>
-      <div className="bottom-image">
-        <div className="bottom-hero-text">
-          <h5>Track your air quality anywhere in the US</h5>
-          <h4>hello@airaware.com</h4>
-          <h4>1-800-AIR-AWARE</h4>
-        </div>
+        <a href="https://www.linkedin.com/in/julio-acceus-68901b98/">
+          <img id="about-person" src={AcceusJulio}  alt="image of Juluio" />
+        </a>
+        <a href="https://www.linkedin.com/in/imanbashir/">
+          <img id="about-person" src={BashirIman} alt="image of Iman" />
+        </a>
+        <a href="https://www.google.com/">
+          <img id="about-person" src={HernandezElvis} alt="image of Elvis" />
+        </a>
+        <a href="https://www.linkedin.com/in/krisi-keranova-9bbba819/">
+          <img id="about-person" src={KeranoraKrisi} alt="image of Krisi" />
+        </a>
       </div>
     </>
   );
