@@ -5,9 +5,9 @@ const Solutions = () => {
   return (
     <>
     <div className="top-banner-inner-pages">
-        <div id="solutions">Solution</div>
+        <div id="title-inner-pages">Air Quality Solutions</div>
         </div>
-        <div id="solutions-container">
+        <div className="solutions-body">
           Good Moderate Hazardous Toxic
           <p>
             Here we can put Solutions for Moderate, Hazardous, Toxic pollution
