@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Searchbar from './Searchbar';
 import PollutionStats from './PollutionStats';
-import { generateStates } from '../index.jsx'
+import { generateStates } from '../index.jsx';
 
 const Dropdown = () => {
   const states = generateStates();
@@ -32,19 +32,19 @@ const Dropdown = () => {
     setCityUrl('');
     setDropdownState('');
     setQuery('');
-  }
+  };
 
   const removeCard = card => {
-    dropdownState === '' ? setDropdownState(' ') : setDropdownState('')
-    const indexToRemove = selectedCityCard.findIndex( ({stats}) => {
-      return (stats.id === card.stats.id);
-    })
+    dropdownState === '' ? setDropdownState(' ') : setDropdownState('');
+    const indexToRemove = selectedCityCard.findIndex(({ stats }) => {
+      return stats.id === card.stats.id;
+    });
     if (indexToRemove === -1) {
       reset();
       return;
     }
-    selectedCityCard.splice(indexToRemove,1)
-  }
+    selectedCityCard.splice(indexToRemove, 1);
+  };
 
   // This useEffect retrieves an array of all supported cities in a state
   // when the user chooses a state from the dropdown box. The cities array
@@ -70,11 +70,18 @@ const Dropdown = () => {
   };
 
   useEffect(() => {
-    // Had to capitalize the first letter of the query because the stored 
+    // Had to capitalize the first letter of the query because the stored
     // city names in selectedCityCard are returned capitalized by the API
-    if (!query || selectedCityCard.some( ({stats}) => stats.id === 
-    `${query[0].toUpperCase()+query.slice(1,query.length)}-${dropdownState}`) ) 
-    return;
+    if (
+      !query ||
+      selectedCityCard.some(
+        ({ stats }) =>
+          stats.id ===
+          `${query[0].toUpperCase() +
+            query.slice(1, query.length)}-${dropdownState}`
+      )
+    )
+      return;
     const fetchCityData = async () => {
       const requests = [
         axios.get(`/api/${dropdownState}/${query}`),
@@ -94,8 +101,12 @@ const Dropdown = () => {
   //
 
   return (
-    <>
-      <div className="center-container">
+    <div className="top-banner">
+      <div className="dropdown-titles">
+        <h1>Check Your Air Quality</h1>
+        <h5>Discover real-time air quality and solutions anywhere in the US</h5>
+      </div>
+      <div className="center-container dropdowns">
         <div className="center-container">
           <label htmlFor="dropdown">Choose a state:</label>
           <select
@@ -140,7 +151,7 @@ const Dropdown = () => {
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 export default Dropdown;
