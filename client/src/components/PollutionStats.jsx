@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import React from 'react';
 import '../styling/App.css';
 import Card from './Card';
 const PollutionStats = ({ stats, cityUrl, remove, weather }) => {
