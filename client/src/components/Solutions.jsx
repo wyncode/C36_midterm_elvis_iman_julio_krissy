@@ -27,16 +27,16 @@ const Solutions = () => {
             <br></br>
             <h6>Plants</h6>
             <p>
-            insert info about plants here
+            Through photosynthesis, they convert the carbon dioxide we exhale into fresh oxygen, and they can also remove toxins from the air we breathe. ... Research has found that soil microorganisms in potted plants also play a part in cleaning indoor air. The NASA studies on indoor pollution done in 1989 recommends 15 to 18 plants in 6 to 8-inch- diameter containers to clean the air in an average 1,800 square foot house. That's roughly one plant per 100 square feet of floor space.
               </p>
             <h6>Exercise</h6>
             <p>
-            insert info about exercise here
+            After all, pollution is an inflammatory trigger, and exercise is an anti-inflammatory. In November, Brazilian researchers published a study in which mice inhaled several types of air pollutants while running on a treadmill or not exercising. The pollution caused inflammation in the airways and throughout the body, but exercise inhibited both these effects.
               </p>
             <h6>Better Ventilation</h6>
             <p>
-              insert info about better Ventilation here
-              </p>
+            Most home heating and cooling systems, including forced air heating systems, do not mechanically bring fresh air into the house. Opening windows and doors, operating window or attic fans, when the weather permits, or running a window air conditioner with the vent control open increases the outdoor ventilation rate. Local bathroom or kitchen fans that exhaust outdoors remove contaminants directly from the room where the fan is located and also increase the outdoor air ventilation rate.
+            </p>
         </div>
     </>
   );
