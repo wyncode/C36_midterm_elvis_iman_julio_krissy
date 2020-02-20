@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import React from 'react';
 import '../styling/App.css';
 import Card from './Card';
-const PollutionStats = ({ stats, cityUrl, handleSelectCity, remove }) => {
+const PollutionStats = ({ stats, cityUrl, remove, weather }) => {
   const timeStamp = stats.ts.slice(0, 10);
   return (
     <Card
-      stats={timeStamp}
+      date={timeStamp}
       aqi={stats.aqius}
       mainPoll={stats.mainus}
       cityUrl={cityUrl}
       value={{ stats, cityUrl }}
-      handleSelectCity={handleSelectCity}
       remove={remove}
+      weather={weather}
     />
   );
 };
