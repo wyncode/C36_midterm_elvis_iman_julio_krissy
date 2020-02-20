@@ -260,3 +260,15 @@ h9 {
   background-color: rgb(198, 230, 241);
   height: 2.5rem; /* Footer height */
 }
+
+.disabledButton{
+  background-color: darkgrey !important;
+}
+
+#date{
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
