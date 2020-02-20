@@ -47,10 +47,10 @@ export default function MediaCard({
             <span id="date">{formattedDate}</span>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <h3 style={{ margin: 0, color: 'black' }}>AQI: {aqi}</h3>
+            <span style={{ margin: 0, color: 'black' }}>AQI: {aqi}</span>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <p
+            <span
               style={{
                 color: 'black',
                 marginTop: '0.5rem',
@@ -58,11 +58,11 @@ export default function MediaCard({
               }}
             >
               Main Pollutant: {mainPoll}
-            </p>
+            </span>
           </Typography>
           <Typography>
             Cigarettes per day: {(aqi * aqiToCig).toPrecision(2)} <br></br>
-            <p style={{ marginTop: '0.5rem' }}>
+            <span style={{ marginTop: '0.5rem' }}>
               Hazard level:{' '}
               <span
                 style={{
@@ -77,7 +77,7 @@ export default function MediaCard({
                     .hazard
                 }
               </span>
-            </p>
+            </span>
           </Typography>
         </CardContent>
       </CardActionArea>

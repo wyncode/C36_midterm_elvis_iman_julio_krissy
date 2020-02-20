@@ -24,7 +24,7 @@ const About = () => {
         <a href="https://www.linkedin.com/in/imanbashir/">
           <img id="about-person" src={BashirIman} alt="image of Iman" />
         </a>
-        <a href="https://www.google.com/">
+        <a href="https://www.linkedin.com/in/elvis-hernandez-9669a618a">
           <img id="about-person" src={HernandezElvis} alt="image of Elvis" />
         </a>
         <a href="https://www.linkedin.com/in/krisi-keranova-9bbba819/">
