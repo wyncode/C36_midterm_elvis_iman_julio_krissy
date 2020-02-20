@@ -127,22 +127,29 @@ body {
   font-size: 25px;
   flex-direction: column;
 }
+                                        /* THIS IS THE ONE CITY PAGE */
+.display-city-card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin: 0 5rem 0 5rem;
+} 
 
-.mission-statement {
-  justify-content: center;
-  padding-bottom: 0px;
+
+s.display-city-card img {
+  max-width: 40%;
+  height:auto;
+  margin: 5rem 5rem 0 1rem;
+  border-radius: 5px;
 }
 
-h10 {
-  font-size: 25px;
-  font-weight: bold;
+.display-city-card h1 {
+text-align: center;
 }
 
-h9 {
-  font-size: 20px;
-  font-style: italic;
-}
 
+
+                                        /* THIS IS THE ONE CITY PAGE */
 .solutions-body {
   font-size: 18px;
   display: flex;

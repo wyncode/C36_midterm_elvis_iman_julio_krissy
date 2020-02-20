@@ -82,9 +82,10 @@ export default function MediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions className="card-actions">
-        <Button className="card-actions" onClick={() => remove(value)}>
-          Remove
-        </Button>
+        <div style={{
+          display:"flex",
+          flexDirection:"row"
+        }}>
         <Link
           to={{
             pathname: `/city/${value.stats.id.split('-')[0]}`,
@@ -102,6 +103,10 @@ export default function MediaCard({
         >
           <Button className="card-actions">Details</Button>
         </Link>
+        <Button className="card-actions" onClick={() => remove(value)}>
+          Remove
+        </Button>
+          </div>
       </CardActions>
     </Card>
   );
