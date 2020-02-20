@@ -3,6 +3,7 @@ import axios from 'axios';
 import Searchbar from './Searchbar';
 import PollutionStats from './PollutionStats';
 import { generateStates } from '../index.jsx';
+import Modal from './Modal';
 
 const Dropdown = () => {
   const states = generateStates();
@@ -15,19 +16,25 @@ const Dropdown = () => {
   const [apiCityData, setApiCityData] = useState({});
   // This is the hook that was defined in the PollutionStats component
   const [cityUrl, setCityUrl] = useState('');
+  const [modalState, setModalState] = useState({});
 
   //                                                       FIRST API BEG
   const handleDropdownChange = event => {
-    
     setDropdownState(event.target.value);
     setQuery('');
   };
 
-  const handleSelectCity = card => {
-    const {apiCityData: stats, cityUrl} = card
-    setSelectedCityCard([...selectedCityCard, {stats,cityUrl}]);
+  const handleSelectCity = ({ apiCityData: stats, cityUrl }) => {
+    if (!stats.id)
+      return setModalState({
+        isOpen: true,
+        content: 'Please select a city and state first'
+      });
+    setSelectedCityCard([...selectedCityCard, { stats, cityUrl }]);
     reset();
   };
+
+  const toggleModal = () => setModalState({});
 
   const reset = () => {
     setApiCityData({});
@@ -84,13 +91,18 @@ const Dropdown = () => {
           `${query[0].toUpperCase() +
             query.slice(1, query.length)}-${dropdownState}`
       )
-    ) {      
+    ) {
       return;
     }
     const fetchCityData = async () => {
       const requests = [
         axios.get(`/api/${dropdownState}/${query}`),
-        axios.get(`/image/${query.toLowerCase().split(' ').join('-')}`)
+        axios.get(
+          `/image/${query
+            .toLowerCase()
+            .split(' ')
+            .join('-')}`
+        )
       ];
       const [
         { data: pollutionData },
@@ -103,44 +115,51 @@ const Dropdown = () => {
     fetchCityData();
   }, [query]);
 
+  const { tp, pr, hu, ws, wd, ic } = apiCityData;
+
   return (
     <div className="top-banner">
       <div className="dropdown-titles">
         <h1>Check Your Air Quality</h1>
         <h5>Discover real-time air quality and solutions anywhere in the US</h5>
       </div>
+      <div className="center-container">
+        <label htmlFor="dropdown"></label>
+        <select
+          value={dropdownState}
+          id="dropdown"
+          onChange={handleDropdownChange}
+        >
+          <option value={null}>State</option>
+          {states.map((state, index) => {
+            return (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            );
+          })}
+        </select>
+        <Searchbar
+          handleSearchbarChange={handleSearchbarChange}
+          handleSubmit={handleSubmit}
+          cities={apiData}
+          search={search}
+        />
+      </div>
 
-        <div className="center-container">
-          <label htmlFor="dropdown"></label>
-          <select
-            value={dropdownState}
-            id="dropdown"
-            onChange={handleDropdownChange}
-          >
-            <option value={null}>State</option>
-            {states.map((state, index) => {
-              return (
-                <option key={index} value={state}>
-                  {state}
-                </option>
-              );
-            })}
-          </select>
-          <Searchbar
-            handleSearchbarChange={handleSearchbarChange}
-            handleSubmit={handleSubmit}
-            cities={apiData}
-            search={search}
-          />
-        </div>
-        
-        <div className="buttons-div">
-          <button onClick={handleSubmit} id="checkCity">CHECK CITY</button>
-          <button 
+      <div className="buttons-div">
+        <button onClick={handleSubmit} id="checkCity">
+          CHECK CITY
+        </button>
+        <button
+          disabled={!apiCityData.id}
+          className={apiCityData.id ? 'enabledButton' : 'disabledButton'}
           id="compare-cities"
-          onClick={() => handleSelectCity({apiCityData, cityUrl})}
-          >COMPARE CITIES</button>
-        </div>
+          onClick={() => handleSelectCity({ apiCityData, cityUrl })}
+        >
+          COMPARE CITIES
+        </button>
+      </div>
       <div className="center-container">
         {selectedCityCard.map(card => (
           <PollutionStats
@@ -148,17 +167,19 @@ const Dropdown = () => {
             stats={card.stats}
             cityUrl={card.cityUrl}
             remove={removeCard}
+            weather={{ tp, pr, hu, ws, wd, ic }}
           />
         ))}
         {apiCityData.id && (
           <PollutionStats
             stats={apiCityData}
             cityUrl={cityUrl}
-            // handleSelectCity={handleSelectCity}
+            handleSelectCity={handleSelectCity}
             remove={removeCard}
           />
         )}
       </div>
+      <Modal {...modalState} toggleModal={toggleModal} />
     </div>
   );
 };

@@ -39,6 +39,7 @@ const About = () => {
   
       <p className="group-members"> LEADERSHIP</p>
       <div id="about-images">
+
         <a className="portrait-link" href="https://www.linkedin.com/in/julio-acceus-68901b98/" target="_blank">
           <img id="about-person" src={AcceusJulio}  alt="image of Juluio" />
           <p>Julio Acceus</p>
@@ -65,6 +66,7 @@ const About = () => {
           <h4>hello@airaware.com</h4>
           <h4>1-800-AIR-AWARE</h4>
         </div>
+
       </div>
     </>
   );
