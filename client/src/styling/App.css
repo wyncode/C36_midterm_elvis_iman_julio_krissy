@@ -109,13 +109,30 @@ body {
 }
 
 .about-body {
-  font-size: 18px;
+  justify-content: center;
+  display: flex;
+  justify-content: left;
+  text-align: left;
+  padding-top: 55px; 
+  margin: 5px;
+  flex-direction: column;
+  font-weight: bolder;
+}
+
+.about-body2 {
+  justify-content: center;
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 10px;
+  padding-top: 15px; 
   margin: 5px;
+  font-size: 25px;
   flex-direction: column;
+}
+
+.mission-statement {
+  justify-content: center;
+  padding-bottom: 0px;
 }
 
 h10 {
@@ -141,13 +158,22 @@ h9 {
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
-  margin: 54px;
+  margin: -25px;
+}
+
+/* Gradient color1 - color2 - color1 */
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 
 #about-person {
   justify-content: center;
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   border-radius: 50%;
   overflow: hidden;
   object-fit: cover;
@@ -192,7 +218,17 @@ h9 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 7%
+  padding-top: 6%
+}
+
+.app-description {
+  height: 40vh;
+  width: 100%;
+  background-size: 100% 35vh;
+  background-repeat: repeat;
+  padding: 0;
+  margin: 0;
+  position: -10px;
 }
 
 .dropdowns {
@@ -243,4 +279,25 @@ h9 {
 }
 .bottom-hero-text h5 {
   color: rgb(34, 34, 104);
+}
+
+
+.about-main {
+  padding: 0 250px;
+  margin-top: -85px;
+}
+
+.group-members {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  padding-bottom: 0;
+}
+
+.portrait-link {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: bolder;
+  text-align: center;
 }
