@@ -39,14 +39,14 @@ const OneCity = ({ location }) => {
       <div id="one-city-body">
         <Card className={classes.root}>
           <CardActionArea>
-            <CardMedia className={classes.media} image={cityUrl} />
+            <CardMedia className={classes.media} image={cityUrl} title={cityUrl} />
             <CardContent className="card-actions">
               <Typography gutterBottom variant="h5" component="h2">
                 {formattedCity} <br></br>
                 {formattedDate}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                <h3 style={{ margin: 0, color: 'black' }}>AQI: {aqi}</h3>
+                <span style={{ margin: 0, color: 'black' }}>AQI: {aqi}</span>
               </Typography>
               <Typography
                 className={classes.secondaryText}
@@ -58,7 +58,7 @@ const OneCity = ({ location }) => {
               </Typography>
               <Typography>
                 Cigarettes per day: {(aqi * aqiToCig).toPrecision(2)} <br></br>
-                <p style={{ marginTop: '0.5rem' }}>
+                <span style={{ marginTop: '0.5rem' }}>
                   Hazard level:{' '}
                   <span
                     style={{
@@ -73,7 +73,7 @@ const OneCity = ({ location }) => {
                         .hazard
                     }
                   </span>
-                </p>
+                </span>
               </Typography>
               <Typography
                 className={classes.secondaryText}

@@ -8,9 +8,9 @@ const Solutions = () => {
         <div id="title-inner-pages">Air Quality Solutions</div>
         </div>
         <div className="solutions-body">
-          <h10>
+          <h6>
             1'st Step is Knowing... AQI What?
-            </h10>
+            </h6>
           <p>
             AQI, also known as Air Quality Index, is an index for reporting daily air quality. It tells you how clean or polluted your air is, and what associated health effects might be.
             <br></br><br></br><b>Good</b> - 0 to 50	
@@ -23,28 +23,21 @@ const Solutions = () => {
             Read more on what each means here: <a href="https://airnow.gov/index.cfm?action=aqibasics.aqi">Air Quality Index</a>
             </p>
             <br></br><br></br>
-            <h10>Some Every Day Solutions</h10>
+            <h6>Some Every Day Solutions</h6>
             <br></br>
-            <h9>Plants</h9>
+            <h6>Plants</h6>
             <p>
             insert info about plants here
               </p>
-            <h9>Exercise</h9>
+            <h6>Exercise</h6>
             <p>
             insert info about exercise here
               </p>
-            <h9>Better Ventilation</h9>
+            <h6>Better Ventilation</h6>
             <p>
               insert info about better Ventilation here
               </p>
         </div>
-      {/* <div className="bottom-image">
-        <div className="bottom-hero-text">
-          <h5>Track your air quality anywhere in the US</h5>
-          <h4>hello@airaware.com</h4>
-          <h4>1-800-AIR-AWARE</h4>
-        </div>
-      </div> */}
     </>
   );
 };
