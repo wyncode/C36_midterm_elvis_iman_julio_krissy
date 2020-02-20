@@ -32,7 +32,6 @@ const Dropdown = () => {
       });
     setSelectedCityCard([...selectedCityCard, { stats, cityUrl }]);
     reset();
-    setDisabledButton(true);
   };
 
   const toggleModal = () => setModalState({});
@@ -109,17 +108,14 @@ const Dropdown = () => {
         { data: pollutionData },
         { data: cityPicData }
       ] = await Promise.all(requests);
-      console.log(pollutionData);
       setApiCityData({ ...pollutionData, city: query, state: dropdownState });
       setCityUrl(cityPicData);
-      setDisabledButton(false);
     };
 
     fetchCityData();
   }, [query]);
 
   const { tp, pr, hu, ws, wd, ic } = apiCityData;
-  console.log('hey', { apiCityData, tp, pr, hu, ws, wd, ic });
 
   return (
     <div className="top-banner">
@@ -152,14 +148,12 @@ const Dropdown = () => {
       </div>
 
       <div className="buttons-div">
-        <button
-          className={apiCityData.id ? 'disabledButton' : 'enabledButton'}
-          onClick={handleSubmit}
-          id="checkCity"
-        >
+        <button onClick={handleSubmit} id="checkCity">
           CHECK CITY
         </button>
         <button
+          disabled={!apiCityData.id}
+          className={apiCityData.id ? 'enabledButton' : 'disabledButton'}
           id="compare-cities"
           onClick={() => handleSelectCity({ apiCityData, cityUrl })}
         >
@@ -180,7 +174,7 @@ const Dropdown = () => {
           <PollutionStats
             stats={apiCityData}
             cityUrl={cityUrl}
-            // handleSelectCity={handleSelectCity}
+            handleSelectCity={handleSelectCity}
             remove={removeCard}
           />
         )}

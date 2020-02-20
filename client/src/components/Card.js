@@ -36,29 +36,11 @@ export default function MediaCard({
     ' ' +
     date.slice(8, 10) +
     `, ${date.slice(0, 4)}`;
+
   return (
-    <Link
-          to={{
-            pathname: `/city/${value.stats.id.split('-')[0]}`,
-            state: {
-              date,
-              aqi,
-              cityUrl,
-              mainPoll,
-              value,
-              formattedCity,
-              formattedDate,
-              weather
-            }
-          }}
-        >
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={cityUrl}
-          title={cityUrl}
-        />
+        <CardMedia className={classes.media} image={cityUrl} title={cityUrl} />
         <CardContent className="card-actions">
           <Typography gutterBottom variant="h5" component="h2">
             {formattedCity} <br></br>
@@ -114,12 +96,12 @@ export default function MediaCard({
               value,
               formattedCity,
               formattedDate,
-              cityUrl
+              weather
             }
           }}
         >
           <Button className="card-actions">Details</Button>
-          </Link>
+        </Link>
       </CardActions>
     </Card>
   );

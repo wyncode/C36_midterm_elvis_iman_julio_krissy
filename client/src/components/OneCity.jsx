@@ -24,7 +24,14 @@ const useStyles = makeStyles({
 
 const OneCity = ({ location }) => {
   const {
-    state: { cityUrl, formattedCity, formattedDate, aqi, mainPoll } = {}
+    state: {
+      cityUrl,
+      formattedCity,
+      formattedDate,
+      aqi,
+      mainPoll,
+      value = {}
+    } = {}
   } = location;
   const classes = useStyles();
   return (
@@ -67,6 +74,14 @@ const OneCity = ({ location }) => {
                     }
                   </span>
                 </p>
+              </Typography>
+              <Typography
+                className={classes.secondaryText}
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              >
+                Current Temperature: {value.stats.tp} C&deg;
               </Typography>
             </CardContent>
           </CardActionArea>
