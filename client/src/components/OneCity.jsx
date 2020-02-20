@@ -1,64 +1,31 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import { aqiToCig, hazardLevels } from '../constants';
+import { solutionsObj } from "../constants"
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    margin: '0 20px'
-  },
-  media: {
-    height: 140
-  },
-  secondaryText: {
-    color: 'black',
-    marginTop: '0.5rem',
-    marginBottom: '0.2rem'
-  }
-});
 
-const OneCity = ({ location }) => {
-  const {
-    state: {
-      cityUrl,
-      formattedCity,
-      formattedDate,
-      aqi,
-      mainPoll,
-      value = {}
-    } = {}
-  } = location;
-  const classes = useStyles();
-  return (
-    <>
-      <div id="one-city-body">
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia className={classes.media} image={cityUrl} title={cityUrl} />
-            <CardContent className="card-actions">
-              <Typography gutterBottom variant="h5" component="h2">
-                {formattedCity} <br></br>
-                {formattedDate}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                <span style={{ margin: 0, color: 'black' }}>AQI: {aqi}</span>
-              </Typography>
-              <Typography
-                className={classes.secondaryText}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                in Pollutant: {mainPoll}
-              </Typography>
-              <Typography>
+  const OneCity = ({ location }) => {
+    const {
+        state: {
+          cityUrl,
+          formattedCity,
+          formattedDate,
+          aqi,
+          mainPoll,
+          value = {}
+        } = {}
+      } = location;
+
+    return (
+        <div className="display-city-card">  
+            <img style={{display:'block'}}  src={cityUrl} alt=""></img>
+            <div className="city-information" style={{textAlign:'center',alignItems:"center",marginTop:"6rem",marginRight:"2rem"}}>
+                
+                <span style={{fontSize:"2rem",fontWeight:"800"}}>{formattedCity}</span> <br></br>
+                <span style={{fontSize:"1.2rem"}}>{formattedDate}</span><br></br>
+                <span style={{fontWeight:'600'}}> AQI: {aqi} </span> <br></br>
+                Main Pollutant: {mainPoll}  <br></br>
                 Cigarettes per day: {(aqi * aqiToCig).toPrecision(2)} <br></br>
-                <span style={{ marginTop: '0.5rem' }}>
+                        <h2><span style={{ marginTop: '0.5rem' }}>
                   Hazard level:{' '}
                   <span
                     style={{
@@ -73,22 +40,16 @@ const OneCity = ({ location }) => {
                         .hazard
                     }
                   </span>
-                </span>
-              </Typography>
-              <Typography
-                className={classes.secondaryText}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                Current Temperature: {value.stats.tp} C&deg;
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </div>
-    </>
-  );
-};
+                </span></h2>
+                        <h3>Additional Information</h3>
+                      <p>{solutionsObj[hazardLevels.find(({ level }) => aqi <= level.range).level
+                        .hazard]}</p>
+
+
+
+            </div>
+        </div>
+    )
+}
 
 export default OneCity;
